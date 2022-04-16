@@ -23,3 +23,10 @@ after_success:
   - docker push mohitchaudhary17/multi-nginx
   - docker push mohitchaudhary17/multi-server
   - docker push mohitchaudhary17/multi-worker
+
+deploy:
+  region: "ap-south-1"
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-758738999818"
+  bucket_path: "docker-multi"
