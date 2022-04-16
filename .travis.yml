@@ -10,10 +10,16 @@ script:
   - docker run -e CI=true mohitchaudhary17/multi-test npm run test -- --coverage
 
 after_success:
-  - docker build -t mohitchaudhary/multi-client ./client
-  - docker build -t mohitchaudhary/multi-nginx ./nginx
-  - docker build -t mohitchaudhary/multi-server ./server
-  - docker build -t mohitchaudhary/multi-worker ./worker
+  - docker build -t mohitchaudhary17/multi-client ./client
+  - docker build -t mohitchaudhary17/multi-nginx ./nginx
+  - docker build -t mohitchaudhary17/multi-server ./server
+  - docker build -t mohitchaudhary17/multi-worker ./worker
 
   # Login into docker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # Push the images in docker hub
+  - docker push mohitchaudhary17/multi-client
+  - docker push mohitchaudhary17/multi-nginx
+  - docker push mohitchaudhary17/multi-server
+  - docker push mohitchaudhary17/multi-worker
